@@ -1,43 +1,171 @@
-<!DOCTYPE HTML>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title></title>
-<style type="text/css">
-
+<title>vue-zyy</title>
+<link rel="stylesheet" href="css/jquery.fullPage.css"><style>
+* { margin: 0; padding: 0;}
+body { font: 16px/1.8 "Microsoft Yahei",verdana;}
+.section{background:url(./images/section.jpg) no-repeat; background-size:cover;}
+.section1 img{ max-width:30%; margin-left:10%; }
+.section1 .user{ margin:0px 0px 0px 20px; }
+.section1 .right{ width:50%; float:right; }
+.section1 .right p{ font-size:28px; }
+.section1 .right p:first-child{ font-size:40px; padding-top:25%; color:#41b883; }
+.section  .title{ font-size:22px;  padding:15px 0px;text-align: center; }
+.section2 .left{ width:45%; float:left; }
+.section2 .right{width:45%; float:right; }
+.section2 .bar{ min-height: :400px;padding:15px 0px; margin:20px 2.2%;  background:rgba(0,0,0,0.1);}
+.section2 .bar p{ padding:10px 20px; font-size:25px; }
+.section2 .bar input{ padding:0px 10px; line-height:35px; font-size:25px; }
+.section3 ul li{ width:29%; margin:10px 1.5%; padding:10px 0.5%; float:left;  background:rgba(0,0,0,0.1); height:250px; list-style-type: none; overflow: 
+auto;	 }
+/* 右侧导航 */
+/* CSS3过度及动画 */
 </style>
 </head>
 <body>
-   <table border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
-     <thead >
-       
-     </thead>
-     <tbody>
-        <tr>
-            <td>课程</td>
-            <td>
-              <table border="1"  cellspacing="0" cellpadding="0" style="border-collapse:collapse">
-                  <tr>
-                    <td>上午</td>
-                    <td>1</td>
-                  </tr>
-                   <tr>
-                    <td>上午</td>
-                    <td>1</td>
-                  </tr>
-                   <tr>
-                    <td>上午</td>
-                    <td>1</td>
-                  </tr>
-              </table>
+<div class="section section1" >
+	<img  src="./images/logo.png" class="icon"/>
+	<div class="right">
+		<p>Vue-轻量级的前端mvvm框架</p>
+		<p>双向绑定</p>
+		<p>组件化</p>
+		<p>数据驱动</p>
+		<p>简洁...高效...良心文档...易上手。。。</p>	
+	</div>
+</div>
+<div class="section section2">
+	<p class="title">从hello world开始</p>
+	<div class="bar left">
+		<p>ko</p>
+		<div class="html">
+			<p data-bind="text:value"><p>
+			<input type="text" data-bind="value:value" />
+		</div>
+		<div contentEditable="true" class="mark1">
+		</div>
+	</div>
+	<div class="bar right"  id="app">
+		<p>vue</p>
+		<div class="html">
+			<p>{{msg}}<p>
+			<input type="text"  v-model="msg"/>
+		</div>
+		<div contentEditable="true" data-value="hhhhhh"  class="mark2">
+			new Vue({<br/>
+			  el: '#app',<br/>
+			  data: {<br/>
+			    message: 'Hello World!'<br/>
+			  }<br/>
+			})
+		</div>
+	</div>
+		
+</div>
+<div class="section section3">
+	<p class="title">基本语法</p>
+	<ul>
+		<li contentEditable="true" >
+			数据渲染：{{}}<br/>
+			&lt;p  v-text="html1"&gt;&lt;/p&gt;<br/>
+			 &lt;input type="text" v-model="message"/> 
+			属性渲染：v-bind<br/>
+			&lt;h1 v-bind:title="message"&gt;hello&lt;/h1&gt;<br/>
+			&lt;a :href="url"&gt;hello&lt;/a&gt;
+		</li>
+		<li contentEditable="true" >
+			类名渲染：<br/>
+			&lt;div v-bind:class="active : isActive"&gt;&lt;/div&gt;<br/>
+			&lt;div v-bind:class="isActive ? active : red"&gt; &lt;/div&gt; 
+			样式渲染：<br/>
+			 &lt;div v-bind:style="{width:width}">&lt;/div><br/>
+			 &lt;div v-bind:sytle="styleObj">&lt;/div><br/>
+			&lt;div v-bind:style="[styleObj1,styleObj2]">&lt;/div>
+		</li>
+		<li contentEditable="true" >
+			条件绑定<br/>
+			&lt;p v-if="seen">hahah&lt;/p>//有无内容<br/>
+			 &lt;p v-show="seen">hah&lt;/p>//控制显隐<br/>
+			 循环绑定：<br/>
+			 &lt;p v-for="list in lists">{{alist.text}}&lt;/p><br/>
+			&lt;p v-for="(key value) in lists">{{key}}:{{value}}&lt;/p><br/>
+			 &lt;p v-for="(index key value) in lists">{{index}}:{{key}}:{{value}}&lt;/p>
+		</li>
+		<li contentEditable="true" >
+			事件绑定：<br/>
+			&lt;a v-on:click="fun1">点击&lt;/a> <br/>
+			&lt;a @click="fun1">点击&lt;/a> <br/>
+			  事件修饰符：<br/>
+			  <!-- 阻止单击事件冒泡 -->
+			&lt;a v-on:click.stop="doThis">&lt;/a><br/>
+			  <!-- 只有修饰符 -->
+			&lt;form v-on:submit.prevent>&lt;/form><br/>
+			  <!-- 添加事件侦听器时使用事件捕获模式 -->
+			&lt;div v-on:click.capture="doThis">...&lt;/div>
+			  <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+		</li>
+		<li contentEditable="true" >
+			运算绑定：<br/>
+			&lt;p>{{reverseMess}}&lt;p/><br/>
+		</li>
+	</ul>
+	
 
-            </td>
-        </tr>
+</div>
+<div class="section section4">
+	this is 4
+</div>
+<div class="section section5">
+	this is 5
+</div>
+<div class="section section6">
+this is 6
+</div>
+<div class="section section7">
+this is 7
+</div>
+<div class="section section8">
+this is 8
+</div>
+<div class="section section9">
+	this is 9
+</div>
+<div class="section section10">
+this is 10
+</div>
+<script src="./js/jquery-1.9.1.min.js "></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script src="./js/jqueryui.js "></script>
+<script type="text/javascript" src="./js/knockout-3.1.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>	
+$(function(){
 
-     </tbody>
-   </table>
-<script type="text/javascript">
-   
+	$.fn.fullpage({
+		verticalCentered: false,
+		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7', 'page8', 'page9', 'page10'],
+		navigation: true,
+		navigationTooltips: ['首页', '视觉', '交互', '皮肤', '功能', '待办邮件', '联系人邮件', '科技', '连接易信', '马上体验']
+	});
+	$(".icon").css("margin-top",($(window).height()-$(".icon").height())/2)
+	var app = new Vue({
+		el:"#app",//这里！！！
+		data:{
+			msg:"hello world",
+			html1:`<div v-html="htmlMess"></div>`
+		}
+	})
+	//$(".mark1").text($(".left .html").html());
+	//$(".mark2").text($(".right .html").html());
+});
+var viewModel = {
+	value: ko.observable("hello world")
+}
+ko.applyBindings(viewModel);
 </script>
 </body>
+
 </html>
