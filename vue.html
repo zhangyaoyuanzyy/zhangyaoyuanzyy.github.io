@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+  <div  id="apphash">
+    <div style="overflow: hidden;width: 80%; margin: 0px auto;">
+      <div class="left" style="float: left; width: 20%">
+        <router-link to="/php" style="line-height: 60px; display: block; background:#ccc;  text-align:center;margin-bottom:20px;">php</router-link><!--这里会被渲染成a标签-->
+        <router-link to="/java" style="line-height: 60px;display: block;background:#ccc; text-align:center;margin-bottom:20px;">java</router-link> 
+        <router-link to="/python" style="line-height: 60px;display: block;background:#ccc; text-align:center;margin-bottom:20px;">python</router-link>
+      </div>
+      <div class="right" style="float: right; width: 78%; height:220px; text-align: :center; background:#f0f0f0;">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div>
+  <template id  = "php">
+    <div>
+      <h2>this is php</h2>
+    </div>
+  </template>
+  <template id  = "java">
+    <div>
+      <h2>this is java</h2>
+    </div>
+  </template>
+  <template id  = "python">
+    <div>
+      <h2>this is python</h2>
+    </div>
+  </template>
+<script type="text/javascript">
+    const php = Vue.extend({
+      template:"#php"
+    })
+    const java = Vue.extend({
+      template:"#java"
+    })
+    const python = Vue.extend({
+      template:"#python"
+    })
+const routes = [//注意是数组形式，每一项是对象
+      {path:'/php',component:php},
+      {path:'/java',component:java},
+      {path:'/python',component:python},
+      //配置根路由
+      {path:'/',redirect:'/php'}
+    ]
+
+    //把路由实例化
+    const router = new VueRouter({
+      routes
+    })
+
+    //挂载路由实例
+    new Vue({
+      router
+    }).$mount("#apphash")
+</script>
+</body>
+</html>
